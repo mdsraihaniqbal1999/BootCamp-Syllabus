@@ -1,1 +1,835 @@
-DevOps Bootcamp – Detailed Topic-Wise SyllabusMODULE 1: Linux + DevOps CultureWeek 1: Linux &amp; Shell Scripting Foundations + DevOps FundamentalsLinux Filesystem &amp; PermissionsFilesystem hierarchy (/, /home, /etc, /var, /usr, /opt, /tmp)File permissions (read, write, execute) for owner, group, otherschmod, chown, chgrp – symbolic and numeric modesUsers and groups: /etc/passwd, /etc/shadow, /etc/groupsudo, su, useradd, usermod, groupaddPackage Managementapt (Debian/Ubuntu): update, upgrade, install, remove, purgeyum/dnf (RHEL/CentOS): install, remove, searchRepository configurationProcess Management &amp; System Monitoringps, top, htop, pgrep, pkillForeground vs background processes, jobs, nohupkill signals (SIGTERM, SIGKILL, SIGHUP)systemctl status, journalctldf, du, free, uptime, vmstat, iostatImportant Files &amp; Directories/etc/hosts – static hostname resolution/etc/passwd – user account info/etc/fstab – filesystem mount configuration/var/log/ – syslog, auth.log, kern.log, application logsSSH &amp; Secure AccessSSH protocol basics, ssh client usageKey-based authentication: ssh-keygen, ssh-copy-id, ~/.ssh/configDisabling password auth, changing default portEnvironment variables: export, env, printenvShell profiles: ~/.bashrc, ~/.bash_profile, /etc/profileSecure server hardening basicsServices &amp; systemdUnit files (service, timer, socket)systemctl start/stop/enable/disable/statusCreating custom systemd service unitsHow applications run as managed services on LinuxShell ScriptingVariables, quoting, command substitutionCommand-line arguments ($1, $2, @,@,#)Wildcards and globbingI/O redirection (&gt;, &gt;&gt;, 2&gt;, &amp;&gt;, &lt;, &lt;&lt;, |, tee)Conditionals (if/elif/else, case)Loops (for, while, until)Functions, return codes, exit codesBuilding reusable automation scriptsDevOps Culture &amp; SDLCDevOps principles: collaboration, automation, measurement, sharingCALMS frameworkSDLC phases and where DevOps fitsCI/CD/CD concepts overviewBlameless culture introductionProjectsAutomated Backup &amp; Disk Cleanup SystemReal-Time Log Monitoring &amp; Alerting ScriptMODULE 2: AWS FoundationsWeek 2: AWS Networking, Security &amp; Compute FoundationsVPC &amp; NetworkingVPC creation, CIDR block planningSubnets: public vs private, availability zonesRoute Tables, Internet Gateway, NAT GatewayPublic vs private networking designProduction-grade network design principlesIAM FundamentalsUsers, groups, roles, policiesLeast-privilege access modelPolicy types: identity-based, resource-basedIAM best practicesSecure Server AccessBastion HostsIAM Roles for EC2AWS Systems Manager Session ManagerVPC Endpoints (Gateway &amp; Interface)VPC Peering, Transit Gateway use casesEC2 FundamentalsInstance types and familiesEBS volumes (gp2, gp3, io1, io2, st1, sc1)AMIs, key pairsEC2 monitoring (CloudWatch basics)2-Tier Application on EC2Application tier + PostgreSQL database tierNginx reverse proxy configurationRoute53 DNS, Elastic IP, SSL certificatesSecurity groups for separate tiersHow production teams structure AWS accounts, networking, and access controlCost awareness: right-sizing EC2, choosing instance families, spotting idle instancesProjectsProduction VPC from Scratch: Multi-AZ VPC with Public, Private App, and Private DB SubnetsSecure EC2 Access using Bastion Host, IAM Roles, SSM Session Manager, and VPC EndpointsDeploy a 2-Tier Application on EC2 with Nginx, PostgreSQL, Route53, Elastic IP, and SSLWeek 3: AWS Storage, CDN &amp; 2-Tier App on EC2Amazon S3Buckets, objects, versioningEncryption (SSE-S3, SSE-KMS, SSE-C)Access control: bucket policies, ACLs, pre-signed URLsStorage classes and lifecycle policies for cost optimisationStatic website hostingS3 event notificationsCloudFrontCaching behavior, TTLsOrigin Access Control (OAC)SSL certificatesCache invalidationCost leversRoute53 &amp; ACMDNS record types (A, AAAA, CNAME, alias)Hosted zonesACM certificate provisioning and validationHigh Availability &amp; BootstrappingProduction application architecture patternsUser data scripts for EC2 bootstrappingConfiguration management basicsLaunch TemplatesAuto Scaling &amp; Load BalancingAuto Scaling Groups, scaling policies (target tracking, step, scheduled)Zero-downtime deploymentsALB vs NLB: listeners, target groups, health checks, routing rulesConnecting EC2 application tier to ALB and ASG end to endAmazon RDSNetworking (subnet groups, security groups)Backups (automated, manual snapshots)Multi-AZ deploymentParameter Store integrationInstance sizing as cost leverAuto Scaling and RDS sizing for cost optimisationAI-Assisted TroubleshootingUsing AI copilots to debug failures fasterWorking effectively with AI in day-to-day operationsProjectsProduction 2-Tier Application with ALB, Auto Scaling Group, RDS PostgreSQL, ACM, and Route53Auto Scaling Validation and Zero-Downtime Deployment under LoadStatic Website Hosting using S3 + CloudFront + Route53 + ACM SSLMODULE 3: Containers, ECS, Terraform &amp; CI/CDWeek 4: Containerization with Docker &amp; Docker ComposeWhy ContainersContainer vs VM: architecture, isolation, resource overheadHow containers replaced VM-based deploymentsDocker ArchitectureDocker Engine, Images, Containers, RegistriesDocker Hub, private registriesBuilding, tagging, storing, sharing images across environmentsDockerfilesImage layers and cachingInstructions: FROM, RUN, COPY, ADD, CMD, ENTRYPOINT, EXPOSE, WORKDIR, ENV, ARG.dockerignoreContainer Lifecycle &amp; Operationsdocker run, ps, logs, exec, stop, rmResource limits (CPU, memory)Logging and troubleshootingContainer lifecycle managementDocker NetworkingBridge network, custom networksContainer-to-container communicationPort mappingPersistent StorageVolumes, bind mounts, named volumesPersistent storage for stateful appsConfiguration &amp; SecretsEnvironment variablesSecrets basicsConfiguration management in containersDocker ComposeMulti-container appsNetworking, volumesEnvironment-specific configs (compose overrides)Depends_on, healthchecksImage OptimisationMulti-stage buildsReducing image size.dockerignore that cuts registry and runtime costProjectsContainerize a Flask + PostgreSQL Application using Docker Compose, custom networks, persistent volumes, and environment variablesMigrate a VM-Based 2-Tier Application to Docker with Nginx, PostgreSQL, health checks, persistent storage, and production-ready image optimisationWeek 5: Running Containers in Production with AWS ECSECS ArchitectureClusters, services, task definitionsContainer networking (awsvpc mode)Service discoveryLaunch TypesFargate vs EC2: when to choose eachCost trade-off analysisLoad Balancing &amp; MonitoringApplication Load Balancers, target groups, health checksLogging (CloudWatch Logs)Monitoring (CloudWatch metrics, Container Insights)ECS SecurityIAM roles (task execution role vs task role)Parameter StoreSecrets Manager integrationECS vs KubernetesReal-world case studiesDecision frameworksProduction Deployment PatternsHigh availabilityScaling (service auto scaling)Right-sizing task CPU and memory to control spendPostgreSQL-Backed Application on ECSProduction best practicesConnecting ECS to RDSLoad Testing FundamentalsHow applications behave under increasing trafficTools overview (k6, Locust, JMeter)ProjectsDeploy a Production 2-Tier Application on ECS with ALB, SSL, Route53, and RDS PostgreSQLLoad Test the Application and Analyse Performance Bottlenecks under Production-Like TrafficWeek 6: Terraform Foundations &amp; CI/CD for ECS ApplicationsInfrastructure as Code FundamentalsWhy IaC, benefits, Terraform vs alternativesTerraform CoreProviders, resources, variables, outputsState management (local vs remote, locking)Dependency handling (implicit, explicit depends_on)Terraform planning (plan, apply, destroy)Lifecycle management (create_before_destroy, prevent_destroy, ignore_changes)Safe change deployment practicesDeploying ECS with TerraformBuilding ECS infrastructure via Terraform instead of console clicksVPC, ALB, ECS, Route53, SSL, RDS integrationGitHub ActionsWorkflows, jobs, stepsRunners (GitHub-hosted vs self-hosted)Secrets and environmentsCI/CD pipelines that build, test, and deploy automaticallyGitHub WorkflowsRepositories, branches, pull requestsCode reviews, collaboration workflowsBranch protection, tagging, stashing, repository managementDeployment AutomationContainer image versioningDeployment automationRollback strategiesECS Autoscaling &amp; MonitoringECS autoscaling policiesCloudWatch alarmsMonitoring dashboardsTagging StrategyTagging in Terraform for cost allocation and accountabilityProjectsDeploy Complete ECS Infrastructure using Terraform: VPC, ALB, ECS, Route53, SSL, RDSBuild a CI/CD Pipeline that Automatically Builds, Deploys, and Updates the ECS ApplicationWeek 7: Microservices on ECS, Advanced Terraform &amp; Advanced CI/CDMicroservices ArchitecturePatterns and service communication strategiesMultiple services on ECS with independent deployments and scaling policiesAdvanced TerraformModules (writing, using, versioning)Remote state (S3 + DynamoDB locking)Workspaces for multi-environmentImports (importing existing resources)Lifecycle management (advanced)Multi-environment deploymentsReusable Terraform modules shared across teams and environmentsTerraform best practices used by platform engineering teams in productionAdvanced GitHub ActionsReusable workflowsComposite actionsWorkflow templatesDeployment approvalsMulti-environment pipelines (dev, staging, prod)Cross-repository deployment: application and infrastructure code maintained separatelyProduction OperationsLoad testing, autoscaling validationProduction troubleshootingProduction-Grade RDSMulti-AZ, Read ReplicasAurora patternsCost VisibilityPer-service cost visibility through taggingScaling disciplineProjectsDeploy a Production Microservices Application on ECS using Reusable Terraform Modules and Multi-Environment InfrastructureBuild an Advanced GitHub Actions Platform with Reusable Workflows, Automated Deployments, Autoscaling, and Production Release StrategiesMODULE 4: Python for DevOps + ServerlessWeek 8: Python Foundations + AWS AutomationPython EnvironmentSetup, virtual environments (venv)Project structurePackage management (pip, requirements.txt)Data StructuresDicts, lists, sets (DevOps-relevant usage)Comprehensions, common patternsSystem Interactionos modulesubprocess: running shell commands from PythonFile operationsData ParsingJSON and YAML parsingConfig file handlingError HandlingExceptions, try/except/finallyCustom exceptionsException management best practicesAPIsWorking with APIs using the requests moduleAuthentication, headers, paginationboto3 ArchitectureSessions, clients vs resourcesPaginatorsCommon AWS service interactionsConfiguration ManagementEnvironment-based config: .env, os.environPython logging best practicesAWS LambdaExecution model: cold starts, warm startsConcurrency limitsLambda triggers: S3, SQS, SNS, EventBridgeLambda Layers: packaging dependencies, sharing codeDead letter queues for failed invocationsLambda ProjectsIAM key rotation Lambda: EventBridge schedule, Secrets Manager, SES reportDaily cloud cost report Lambda: Cost Explorer data, per-service breakdownWeek 9: Serverless AutomationSystem Tools from Pythonsubprocess for running system toolsParsing command outputFile Scanning AutomationClamAV setup, freshclamScan result parsingFile scanning automation running on ECS with S3 + SQS triggerEvent-Driven PatternsS3 event notification → SQS → Python consumer patternS3 object tagging: Clean/InfectedMulti-Account ArchitectureLanding account vs clean accountAlertingSES email alerts for infected filesAPI Gateway + LambdaProxy vs non-proxy integrationLambda OrchestrationMulti-Lambda orchestration patterns: chaining, fan-out, fan-inLambda Cost OptimisationRight-sizing memoryReducing cold startsEventBridgeEventBridge as the event busRules, targets, patternsWeek 10: Database Migration + Cost Automation with PythonMigration PlanningPre-migration health check scriptDatabase Migrationpg_dump and pg_restore from Python subprocesspgsync for live data migration with minimal downtimeData ValidationPost-migration: row counts, checksum comparisonContainerising Migration ScriptsDocker for migration scriptsDeploying a migration job on ECS Fargate as a one-off taskLambda trigger for the ECS migration taskCost Automationboto3 for pulling RDS and EC2 metrics via CloudWatchIdentifying rightsizing candidates: underutilised instances, oversized storageBudget alerts: programmatic spend thresholds with notificationsAutomated tagging enforcement: scanning for untagged resourcesBuilding FinOps tooling in PythonMODULE 5: Kubernetes on AWS (EKS)Week 11: Kubernetes Fundamentals + Local ClustersWhy KubernetesThe problems that broke before KubernetesWhat Kubernetes solvesControl Plane Deep DiveAPI server, etcd, scheduler, controller managerWorker Node Componentskubelet, kube-proxy, container runtime (containerd)Core ObjectsPod, ReplicaSet, Deployment, ServiceLocal SetupKind (Kubernetes in Docker) setupkubectl basics and everyday commandsConfigurationConfigMaps and Secrets: creating, mounting as env vars and volumesOrganisationNamespaces, labels, selectors, annotationsResource ManagementResource requests and limitsCorrect sizing as the first line of cost controlNetworkingKubernetes DNS and service discovery internalsHealth ChecksLiveness, readiness, and startup probesReal failure scenariosUpdatesRolling upgrades and rollback strategiesAutoscalingHPA (Horizontal Pod Autoscaler): CPU, memory, custom metricsVPA (Vertical Pod Autoscaler)PatternsInit containers and sidecar patternsDisruptionPod Disruption Budgets for zero-downtime deploymentsDebuggingCrashLoopBackOff, OOMKilled: live debugging techniquesWorkload TypesStatefulSets, DaemonSets, and JobsWeek 12: CI/CD with OIDC + GitOps + Production EKS FoundationGitOps FundamentalsWhy GitOps over push-based deploymentsArgoCD on KindSetup, apps, sync policies, health checksEnd-to-End CI/CDGitHub Actions builds image, ArgoCD deploysArgoCD AdvancedApp-of-Apps patternRollbackMulti-environment GitOpsMonitoring on KindPrometheus + Grafana: request rate, pod health dashboardsEKS Cluster Setupeksctl and AWS consoleEKS add-ons: VPC CNI, CoreDNS, EBS CSI Driver, kube-proxyIRSA (IAM Roles for Service Accounts)Kubernetes to AWS IAM with OIDCNo hardcoded credentialsAWS Load Balancer ControllerInstallation with HelmIngress for internal and external traffic routingExternalDNSAutomatic Route 53 record managementDomain &amp; SSLSSL/TLS termination with ACMWeek 13: 3-Tier App on EKS + Docker Optimisation3-Tier ApplicationFrontend + backend + RDS PostgreSQL on EKSDatabase MigrationsUsing Kubernetes JobsInit ContainersDB connection readiness checksIRSA in PracticeBackend pod accessing Secrets Manager without credentialsExternal Secrets OperatorSyncing Secrets Manager into Kubernetes SecretsIngress RulesRouting traffic to frontend vs backendDeployment StrategiesBlue-Green deployment on EKS with weighted routingTroubleshootingImagePullBackOff, pending pods, service not reachableStatefulSets Deep DiveProduction patterns and failure recoveryStoragePersistentVolume, PVC, StorageClassStatic vs dynamic provisioning on EKSEBS vs EFS: choosing the right storage, cost impactVolume snapshots and backup strategies on EKSDocker Image OptimisationMulti-stage Docker builds: drastically smaller production imagesDistroless and minimal base imagesLayer caching, build context, .dockerignoreWeek 14: Microservices on EKS + Terraform for EKSProduction EKS with TerraformVPC, subnets, node groups, add-onsTerraform module structure for EKS: separation of concernsManaging dev/staging/prod with Terraform workspacesIRSA setup via Terraform: no manual console stepsTerraform drift detection on EKS infrastructureEKS upgrade strategy with TerraformNode GroupsInstance typesSpot vs on-demand for costTaints and tolerationsMicroservices DesignBounded context, single responsibilitySplitting the monolith: frontend, order, inventory, and user servicePostgreSQL on KubernetesCloudNativePG (CNPG): HA, automated failover, backups, read replicasService CommunicationClusterIP vs headless vs service meshNetwork PoliciesMicroservice traffic isolation between namespacesGateway APIAdvanced ingress routingGitOps for Multi-EnvironmentArgoCD ApplicationSet for environment promotion across dev/staging/prodCI for MicroservicesMatrix builds in GitHub Actions for multiple microservicesWeek 15: Full Observability Stack (Prometheus, Loki, Tempo &amp; Grafana)PrometheusMetrics collectionPromQLScrape configsPrometheus OperatorLokiLog storage and queryingLogQL basicsFluent Bit on EKSLog aggregation, filtering, routing to LokiGrafanaDashboards: Kubernetes cluster, app metrics, AWS resource metricsAlertManagerRouting alerts to Slack and PagerDutyGrouping and silencingCloudWatch IntegrationContainer Insights alongside PrometheusOpenTelemetry (Tracing)Distributed tracing: instrumentation, collectors, exportersTracing a request across multiple microservices end to endTracing BackendJaeger or Tempo as tracing backendSLOs &amp; SLIsDefinitions, writing measurable objectivesError budget dashboards in GrafanaMulti-window, multi-burn-rate alerting for SLOsAlertManager AdvancedInhibition rules, routing trees, deduplicationLog-Based AlertingGrafana with Loki rulesWeek 16: Service Mesh (Istio) + Autoscaling + Cost OptimisationService Mesh Fundamentals (Istio)What problems a service mesh solvesIstio installation and architecture: control plane, data plane, sidecarsSecuritymTLS between all microservices: automatic, no code changesTraffic ManagementVirtualService, DestinationRule, GatewayCanary deployments with Istio traffic splittingObservabilityVisualising service mesh traffic with KialiNetwork PoliciesZero-trust pod-to-pod communicationEgress controls and namespace isolationResiliencePod topology spread constraints for multi-AZ resilienceAutoscalingKarpenter architecture: how it differs from Cluster AutoscalerNodePool and EC2NodeClass configurationKarpenter bin packing and consolidationKEDA: event-driven pod autoscaling on queue depth, Kafka lag, cron, and custom metricsCost OptimisationSpot + On-Demand mixed node fleetsEKS Auto Mode: what it is and when to use itOpenCost and Kubecost: per-namespace, per-team, per-service cost attributionTagging strategy as cost governance: enforcing tags with Kyverno and OPABudget alerts, automated enforcement, weekly FinOps reporting with rightsizing recommendationsBuilding a cost culture: making engineers aware of infrastructure costsPolicy EnforcementKyverno policy enforcement: blocking deployments without resource limitsPod Security Admission: restricted, baseline, privileged modesMODULE 6: DevSecOps + Kubernetes Security (Kyverno + Security Tools)Week 17: Shift-Left Security + Pipeline HardeningDevSecOps MindsetWhere security fits in the SDLCSAST (Static Application Security Testing)Semgrep: code-level vulnerability scanning in pull requestsDAST (Dynamic Application Security Testing)OWASP ZAP: running against staging before every production releaseSCA (Software Composition Analysis)Dependency auditing with Trivy and GrypeSecret ScanningPre-commit secret scanningGitHub secret scanningContainer Supply Chain SecurityTrivy blocking critical CVEsImage signing with CosignSBOM generation with SyftIaC Security ScanningCheckov linting Terraform and Kubernetes manifestsSecrets Management in the PipelineOIDC for AWS authExternal Secrets OperatorFull Security PipelineBuilding the full security pipeline end-to-end in GitHub ActionsHard fail gates: nothing progresses if a gate does not passWriting Checkov exceptions with documented justificationManaging Trivy ignore files: accepting risk intentionally, not accidentallyCosign signature verification in ArgoCD: blocking unsigned imagesDependency UpdatesDependabot and RenovateWeek 18: Kubernetes Runtime Security + Policy as Code (Kyverno) + Zero TrustRuntime Threat DetectionFalco for runtime threat detection on EKSCustom rules for suspicious process execution, file access, and network activityFalco alerting to Slack in real timeCIS BenchmarkCIS Kubernetes Benchmark scanning with kube-benchZero Trust NetworkingNetwork policies for zero trust between namespaces: default deny all, explicit allow onlyAudit LogsKubernetes audit logs: what's happening in your cluster and how to query itIntegrated Security PipelineConnecting every security tool into a single coherent pipelineCluster-side controls: Kyverno, Falco, network policies, pod security standards, kube-bench working togetherIncident ResponseIncident response workflow: what happens when Falco fires a critical alertSecurity ReportingGenerating a weekly security health reportMODULE 7: SRE + Incident ResponseWeek 19: SRE Foundations + Chaos EngineeringCore SRE ConceptsReliability, SLIs, SLOs, SLAsError budgets, incidents, postmortemsSLI, SLO, SLAPrecise definitionsWriting measurable objectivesError BudgetsHow they make deployment decisions instead of gut feelError budget policy: deployment freezes, negotiating reliability work vs feature workDORA MetricsDeployment frequency, lead time, MTTR, change failure rateOn-Call CultureRunbook discipline: what a good runbook looks likePostmortem CultureBlameless analysis, timeline reconstructionRCAs that prevent recurrenceChaos EngineeringPhilosophy: breaking things deliberately before they break unexpectedlyLitmusChaos on EKS: pod failure, network delay, CPU stress, disk fill experimentsDefining steady-state hypotheses and blast radius limitsCapacity PlanningBasics and the capacity vs cost trade-offSRE DashboardBuilding a production-ready dashboard: error budget burn, DORA metrics, on-call health, alert volumeReliability ReviewsFormal review of a service before it goes to production
+# DevOps Bootcamp – Detailed Topic-Wise Syllabus
+
+## Table of Contents
+
+- [Module 1: Linux + DevOps Culture](#module-1-linux--devops-culture)
+- [Module 2: AWS Foundations](#module-2-aws-foundations)
+- [Module 3: Containers, ECS, Terraform & CI/CD](#module-3-containers-ecs-terraform--cicd)
+- [Module 4: Python for DevOps + Serverless](#module-4-python-for-devops--serverless)
+- [Module 5: Kubernetes on AWS (EKS)](#module-5-kubernetes-on-aws-eks)
+- [Module 6: DevSecOps + Kubernetes Security](#module-6-devsecops--kubernetes-security-kyverno--security-tools)
+- [Module 7: SRE + Incident Response](#module-7-sre--incident-response)
+
+---
+
+## MODULE 1: Linux + DevOps Culture
+
+### Week 1: Linux & Shell Scripting Foundations + DevOps Fundamentals
+
+#### Linux Filesystem & Permissions
+- Filesystem hierarchy (`/`, `/home`, `/etc`, `/var`, `/usr`, `/opt`, `/tmp`)
+- File permissions (read, write, execute) for owner, group, others
+- `chmod`, `chown`, `chgrp` – symbolic and numeric modes
+- Users and groups: `/etc/passwd`, `/etc/shadow`, `/etc/group`
+- `sudo`, `su`, `useradd`, `usermod`, `groupadd`
+
+#### Package Management
+- `apt` (Debian/Ubuntu): update, upgrade, install, remove, purge
+- `yum`/`dnf` (RHEL/CentOS): install, remove, search
+- Repository configuration
+
+#### Process Management & System Monitoring
+- `ps`, `top`, `htop`, `pgrep`, `pkill`
+- Foreground vs background processes, `jobs`, `nohup`
+- `kill` signals (SIGTERM, SIGKILL, SIGHUP)
+- `systemctl status`, `journalctl`
+- `df`, `du`, `free`, `uptime`, `vmstat`, `iostat`
+
+#### Important Files & Directories
+- `/etc/hosts` – static hostname resolution
+- `/etc/passwd` – user account info
+- `/etc/fstab` – filesystem mount configuration
+- `/var/log/` – syslog, auth.log, kern.log, application logs
+
+#### SSH & Secure Access
+- SSH protocol basics, `ssh` client usage
+- Key-based authentication: `ssh-keygen`, `ssh-copy-id`, `~/.ssh/config`
+- Disabling password auth, changing default port
+- Environment variables: `export`, `env`, `printenv`
+- Shell profiles: `~/.bashrc`, `~/.bash_profile`, `/etc/profile`
+- Secure server hardening basics
+
+#### Services & systemd
+- Unit files (service, timer, socket)
+- `systemctl` start/stop/enable/disable/status
+- Creating custom systemd service units
+- How applications run as managed services on Linux
+
+#### Shell Scripting
+- Variables, quoting, command substitution
+- Command-line arguments (`$1`, `$2`, `$@`, `$#`)
+- Wildcards and globbing
+- I/O redirection (`>`, `>>`, `2>`, `&>`, `<`, `<<`, `|`, `tee`)
+- Conditionals (if/elif/else, case)
+- Loops (for, while, until)
+- Functions, return codes, exit codes
+- Building reusable automation scripts
+
+#### DevOps Culture & SDLC
+- DevOps principles: collaboration, automation, measurement, sharing
+- CALMS framework
+- SDLC phases and where DevOps fits
+- CI/CD/CD concepts overview
+- Blameless culture introduction
+
+#### Projects
+- Automated Backup & Disk Cleanup System
+- Real-Time Log Monitoring & Alerting Script
+
+---
+
+## MODULE 2: AWS Foundations
+
+### Week 2: AWS Networking, Security & Compute Foundations
+
+#### VPC & Networking
+- VPC creation, CIDR block planning
+- Subnets: public vs private, availability zones
+- Route Tables, Internet Gateway, NAT Gateway
+- Public vs private networking design
+- Production-grade network design principles
+
+#### IAM Fundamentals
+- Users, groups, roles, policies
+- Least-privilege access model
+- Policy types: identity-based, resource-based
+- IAM best practices
+
+#### Secure Server Access
+- Bastion Hosts
+- IAM Roles for EC2
+- AWS Systems Manager Session Manager
+- VPC Endpoints (Gateway & Interface)
+- VPC Peering, Transit Gateway use cases
+
+#### EC2 Fundamentals
+- Instance types and families
+- EBS volumes (gp2, gp3, io1, io2, st1, sc1)
+- AMIs, key pairs
+- EC2 monitoring (CloudWatch basics)
+
+#### 2-Tier Application on EC2
+- Application tier + PostgreSQL database tier
+- Nginx reverse proxy configuration
+- Route53 DNS, Elastic IP, SSL certificates
+- Security groups for separate tiers
+- How production teams structure AWS accounts, networking, and access control
+- Cost awareness: right-sizing EC2, choosing instance families, spotting idle instances
+
+#### Projects
+- Production VPC from Scratch: Multi-AZ VPC with Public, Private App, and Private DB Subnets
+- Secure EC2 Access using Bastion Host, IAM Roles, SSM Session Manager, and VPC Endpoints
+- Deploy a 2-Tier Application on EC2 with Nginx, PostgreSQL, Route53, Elastic IP, and SSL
+
+### Week 3: AWS Storage, CDN & 2-Tier App on EC2
+
+#### Amazon S3
+- Buckets, objects, versioning
+- Encryption (SSE-S3, SSE-KMS, SSE-C)
+- Access control: bucket policies, ACLs, pre-signed URLs
+- Storage classes and lifecycle policies for cost optimisation
+- Static website hosting
+- S3 event notifications
+
+#### CloudFront
+- Caching behavior, TTLs
+- Origin Access Control (OAC)
+- SSL certificates
+- Cache invalidation
+- Cost levers
+
+#### Route53 & ACM
+- DNS record types (A, AAAA, CNAME, alias)
+- Hosted zones
+- ACM certificate provisioning and validation
+
+#### High Availability & Bootstrapping
+- Production application architecture patterns
+- User data scripts for EC2 bootstrapping
+- Configuration management basics
+- Launch Templates
+
+#### Auto Scaling & Load Balancing
+- Auto Scaling Groups, scaling policies (target tracking, step, scheduled)
+- Zero-downtime deployments
+- ALB vs NLB: listeners, target groups, health checks, routing rules
+- Connecting EC2 application tier to ALB and ASG end to end
+
+#### Amazon RDS
+- Networking (subnet groups, security groups)
+- Backups (automated, manual snapshots)
+- Multi-AZ deployment
+- Parameter Store integration
+- Instance sizing as cost lever
+- Auto Scaling and RDS sizing for cost optimisation
+
+#### AI-Assisted Troubleshooting
+- Using AI copilots to debug failures faster
+- Working effectively with AI in day-to-day operations
+
+#### Projects
+- Production 2-Tier Application with ALB, Auto Scaling Group, RDS PostgreSQL, ACM, and Route53
+- Auto Scaling Validation and Zero-Downtime Deployment under Load
+- Static Website Hosting using S3 + CloudFront + Route53 + ACM SSL
+
+---
+
+## MODULE 3: Containers, ECS, Terraform & CI/CD
+
+### Week 4: Containerization with Docker & Docker Compose
+
+#### Why Containers
+- Container vs VM: architecture, isolation, resource overhead
+- How containers replaced VM-based deployments
+
+#### Docker Architecture
+- Docker Engine, Images, Containers, Registries
+- Docker Hub, private registries
+- Building, tagging, storing, sharing images across environments
+
+#### Dockerfiles
+- Image layers and caching
+- Instructions: `FROM`, `RUN`, `COPY`, `ADD`, `CMD`, `ENTRYPOINT`, `EXPOSE`, `WORKDIR`, `ENV`, `ARG`
+- `.dockerignore`
+
+#### Container Lifecycle & Operations
+- `docker run`, `ps`, `logs`, `exec`, `stop`, `rm`
+- Resource limits (CPU, memory)
+- Logging and troubleshooting
+- Container lifecycle management
+
+#### Docker Networking
+- Bridge network, custom networks
+- Container-to-container communication
+- Port mapping
+
+#### Persistent Storage
+- Volumes, bind mounts, named volumes
+- Persistent storage for stateful apps
+
+#### Configuration & Secrets
+- Environment variables
+- Secrets basics
+- Configuration management in containers
+
+#### Docker Compose
+- Multi-container apps
+- Networking, volumes
+- Environment-specific configs (compose overrides)
+- `depends_on`, healthchecks
+
+#### Image Optimisation
+- Multi-stage builds
+- Reducing image size
+- `.dockerignore` that cuts registry and runtime cost
+
+#### Projects
+- Containerize a Flask + PostgreSQL Application using Docker Compose, custom networks, persistent volumes, and environment variables
+- Migrate a VM-Based 2-Tier Application to Docker with Nginx, PostgreSQL, health checks, persistent storage, and production-ready image optimisation
+
+### Week 5: Running Containers in Production with AWS ECS
+
+#### ECS Architecture
+- Clusters, services, task definitions
+- Container networking (awsvpc mode)
+- Service discovery
+
+#### Launch Types
+- Fargate vs EC2: when to choose each
+- Cost trade-off analysis
+
+#### Load Balancing & Monitoring
+- Application Load Balancers, target groups, health checks
+- Logging (CloudWatch Logs)
+- Monitoring (CloudWatch metrics, Container Insights)
+
+#### ECS Security
+- IAM roles (task execution role vs task role)
+- Parameter Store
+- Secrets Manager integration
+
+#### ECS vs Kubernetes
+- Real-world case studies
+- Decision frameworks
+
+#### Production Deployment Patterns
+- High availability
+- Scaling (service auto scaling)
+- Right-sizing task CPU and memory to control spend
+
+#### PostgreSQL-Backed Application on ECS
+- Production best practices
+- Connecting ECS to RDS
+
+#### Load Testing Fundamentals
+- How applications behave under increasing traffic
+- Tools overview (k6, Locust, JMeter)
+
+#### Projects
+- Deploy a Production 2-Tier Application on ECS with ALB, SSL, Route53, and RDS PostgreSQL
+- Load Test the Application and Analyse Performance Bottlenecks under Production-Like Traffic
+
+### Week 6: Terraform Foundations & CI/CD for ECS Applications
+
+#### Infrastructure as Code Fundamentals
+- Why IaC, benefits, Terraform vs alternatives
+
+#### Terraform Core
+- Providers, resources, variables, outputs
+- State management (local vs remote, locking)
+- Dependency handling (implicit, explicit `depends_on`)
+- Terraform planning (`plan`, `apply`, `destroy`)
+- Lifecycle management (`create_before_destroy`, `prevent_destroy`, `ignore_changes`)
+- Safe change deployment practices
+
+#### Deploying ECS with Terraform
+- Building ECS infrastructure via Terraform instead of console clicks
+- VPC, ALB, ECS, Route53, SSL, RDS integration
+
+#### GitHub Actions
+- Workflows, jobs, steps
+- Runners (GitHub-hosted vs self-hosted)
+- Secrets and environments
+- CI/CD pipelines that build, test, and deploy automatically
+
+#### GitHub Workflows
+- Repositories, branches, pull requests
+- Code reviews, collaboration workflows
+- Branch protection, tagging, stashing, repository management
+
+#### Deployment Automation
+- Container image versioning
+- Deployment automation
+- Rollback strategies
+
+#### ECS Autoscaling & Monitoring
+- ECS autoscaling policies
+- CloudWatch alarms
+- Monitoring dashboards
+
+#### Tagging Strategy
+- Tagging in Terraform for cost allocation and accountability
+
+#### Projects
+- Deploy Complete ECS Infrastructure using Terraform: VPC, ALB, ECS, Route53, SSL, RDS
+- Build a CI/CD Pipeline that Automatically Builds, Deploys, and Updates the ECS Application
+
+### Week 7: Microservices on ECS, Advanced Terraform & Advanced CI/CD
+
+#### Microservices Architecture
+- Patterns and service communication strategies
+- Multiple services on ECS with independent deployments and scaling policies
+
+#### Advanced Terraform
+- Modules (writing, using, versioning)
+- Remote state (S3 + DynamoDB locking)
+- Workspaces for multi-environment
+- Imports (importing existing resources)
+- Lifecycle management (advanced)
+- Multi-environment deployments
+- Reusable Terraform modules shared across teams and environments
+- Terraform best practices used by platform engineering teams in production
+
+#### Advanced GitHub Actions
+- Reusable workflows
+- Composite actions
+- Workflow templates
+- Deployment approvals
+- Multi-environment pipelines (dev, staging, prod)
+- Cross-repository deployment: application and infrastructure code maintained separately
+
+#### Production Operations
+- Load testing, autoscaling validation
+- Production troubleshooting
+
+#### Production-Grade RDS
+- Multi-AZ, Read Replicas
+- Aurora patterns
+
+#### Cost Visibility
+- Per-service cost visibility through tagging
+- Scaling discipline
+
+#### Projects
+- Deploy a Production Microservices Application on ECS using Reusable Terraform Modules and Multi-Environment Infrastructure
+- Build an Advanced GitHub Actions Platform with Reusable Workflows, Automated Deployments, Autoscaling, and Production Release Strategies
+
+---
+
+## MODULE 4: Python for DevOps + Serverless
+
+### Week 8: Python Foundations + AWS Automation
+
+#### Python Environment
+- Setup, virtual environments (`venv`)
+- Project structure
+- Package management (`pip`, `requirements.txt`)
+
+#### Data Structures
+- Dicts, lists, sets (DevOps-relevant usage)
+- Comprehensions, common patterns
+
+#### System Interaction
+- `os` module
+- `subprocess`: running shell commands from Python
+- File operations
+
+#### Data Parsing
+- JSON and YAML parsing
+- Config file handling
+
+#### Error Handling
+- Exceptions, `try`/`except`/`finally`
+- Custom exceptions
+- Exception management best practices
+
+#### APIs
+- Working with APIs using the `requests` module
+- Authentication, headers, pagination
+
+#### boto3 Architecture
+- Sessions, clients vs resources
+- Paginators
+- Common AWS service interactions
+
+#### Configuration Management
+- Environment-based config: `.env`, `os.environ`
+- Python logging best practices
+
+#### AWS Lambda
+- Execution model: cold starts, warm starts
+- Concurrency limits
+- Lambda triggers: S3, SQS, SNS, EventBridge
+- Lambda Layers: packaging dependencies, sharing code
+- Dead letter queues for failed invocations
+
+#### Lambda Projects
+- IAM key rotation Lambda: EventBridge schedule, Secrets Manager, SES report
+- Daily cloud cost report Lambda: Cost Explorer data, per-service breakdown
+
+### Week 9: Serverless Automation
+
+#### System Tools from Python
+- `subprocess` for running system tools
+- Parsing command output
+
+#### File Scanning Automation
+- ClamAV setup, `freshclam`
+- Scan result parsing
+- File scanning automation running on ECS with S3 + SQS trigger
+
+#### Event-Driven Patterns
+- S3 event notification → SQS → Python consumer pattern
+- S3 object tagging: Clean/Infected
+
+#### Multi-Account Architecture
+- Landing account vs clean account
+
+#### Alerting
+- SES email alerts for infected files
+
+#### API Gateway + Lambda
+- Proxy vs non-proxy integration
+
+#### Lambda Orchestration
+- Multi-Lambda orchestration patterns: chaining, fan-out, fan-in
+
+#### Lambda Cost Optimisation
+- Right-sizing memory
+- Reducing cold starts
+
+#### EventBridge
+- EventBridge as the event bus
+- Rules, targets, patterns
+
+### Week 10: Database Migration + Cost Automation with Python
+
+#### Migration Planning
+- Pre-migration health check script
+
+#### Database Migration
+- `pg_dump` and `pg_restore` from Python subprocess
+- `pgsync` for live data migration with minimal downtime
+
+#### Data Validation
+- Post-migration: row counts, checksum comparison
+
+#### Containerising Migration Scripts
+- Docker for migration scripts
+- Deploying a migration job on ECS Fargate as a one-off task
+- Lambda trigger for the ECS migration task
+
+#### Cost Automation
+- boto3 for pulling RDS and EC2 metrics via CloudWatch
+- Identifying rightsizing candidates: underutilised instances, oversized storage
+- Budget alerts: programmatic spend thresholds with notifications
+- Automated tagging enforcement: scanning for untagged resources
+- Building FinOps tooling in Python
+
+---
+
+## MODULE 5: Kubernetes on AWS (EKS)
+
+### Week 11: Kubernetes Fundamentals + Local Clusters
+
+#### Why Kubernetes
+- The problems that broke before Kubernetes
+- What Kubernetes solves
+
+#### Control Plane Deep Dive
+- API server, etcd, scheduler, controller manager
+
+#### Worker Node Components
+- kubelet, kube-proxy, container runtime (containerd)
+
+#### Core Objects
+- Pod, ReplicaSet, Deployment, Service
+
+#### Local Setup
+- Kind (Kubernetes in Docker) setup
+- `kubectl` basics and everyday commands
+
+#### Configuration
+- ConfigMaps and Secrets: creating, mounting as env vars and volumes
+
+#### Organisation
+- Namespaces, labels, selectors, annotations
+
+#### Resource Management
+- Resource requests and limits
+- Correct sizing as the first line of cost control
+
+#### Networking
+- Kubernetes DNS and service discovery internals
+
+#### Health Checks
+- Liveness, readiness, and startup probes
+- Real failure scenarios
+
+#### Updates
+- Rolling upgrades and rollback strategies
+
+#### Autoscaling
+- HPA (Horizontal Pod Autoscaler): CPU, memory, custom metrics
+- VPA (Vertical Pod Autoscaler)
+
+#### Patterns
+- Init containers and sidecar patterns
+
+#### Disruption
+- Pod Disruption Budgets for zero-downtime deployments
+
+#### Debugging
+- CrashLoopBackOff, OOMKilled: live debugging techniques
+
+#### Workload Types
+- StatefulSets, DaemonSets, and Jobs
+
+### Week 12: CI/CD with OIDC + GitOps + Production EKS Foundation
+
+#### GitOps Fundamentals
+- Why GitOps over push-based deployments
+
+#### ArgoCD on Kind
+- Setup, apps, sync policies, health checks
+
+#### End-to-End CI/CD
+- GitHub Actions builds image, ArgoCD deploys
+
+#### ArgoCD Advanced
+- App-of-Apps pattern
+- Rollback
+- Multi-environment GitOps
+
+#### Monitoring on Kind
+- Prometheus + Grafana: request rate, pod health dashboards
+
+#### EKS Cluster Setup
+- `eksctl` and AWS console
+- EKS add-ons: VPC CNI, CoreDNS, EBS CSI Driver, kube-proxy
+
+#### IRSA (IAM Roles for Service Accounts)
+- Kubernetes to AWS IAM with OIDC
+- No hardcoded credentials
+
+#### AWS Load Balancer Controller
+- Installation with Helm
+- Ingress for internal and external traffic routing
+
+#### ExternalDNS
+- Automatic Route 53 record management
+
+#### Domain & SSL
+- SSL/TLS termination with ACM
+
+### Week 13: 3-Tier App on EKS + Docker Optimisation
+
+#### 3-Tier Application
+- Frontend + backend + RDS PostgreSQL on EKS
+
+#### Database Migrations
+- Using Kubernetes Jobs
+- Init Containers
+- DB connection readiness checks
+
+#### IRSA in Practice
+- Backend pod accessing Secrets Manager without credentials
+
+#### External Secrets Operator
+- Syncing Secrets Manager into Kubernetes Secrets
+
+#### Ingress Rules
+- Routing traffic to frontend vs backend
+
+#### Deployment Strategies
+- Blue-Green deployment on EKS with weighted routing
+
+#### Troubleshooting
+- ImagePullBackOff, pending pods, service not reachable
+
+#### StatefulSets Deep Dive
+- Production patterns and failure recovery
+
+#### Storage
+- PersistentVolume, PVC, StorageClass
+- Static vs dynamic provisioning on EKS
+- EBS vs EFS: choosing the right storage, cost impact
+- Volume snapshots and backup strategies on EKS
+
+#### Docker Image Optimisation
+- Multi-stage Docker builds: drastically smaller production images
+- Distroless and minimal base images
+- Layer caching, build context, `.dockerignore`
+
+### Week 14: Microservices on EKS + Terraform for EKS
+
+#### Production EKS with Terraform
+- VPC, subnets, node groups, add-ons
+- Terraform module structure for EKS: separation of concerns
+- Managing dev/staging/prod with Terraform workspaces
+- IRSA setup via Terraform: no manual console steps
+- Terraform drift detection on EKS infrastructure
+- EKS upgrade strategy with Terraform
+
+#### Node Groups
+- Instance types
+- Spot vs on-demand for cost
+- Taints and tolerations
+
+#### Microservices Design
+- Bounded context, single responsibility
+- Splitting the monolith: frontend, order, inventory, and user service
+
+#### PostgreSQL on Kubernetes
+- CloudNativePG (CNPG): HA, automated failover, backups, read replicas
+
+#### Service Communication
+- ClusterIP vs headless vs service mesh
+
+#### Network Policies
+- Microservice traffic isolation between namespaces
+
+#### Gateway API
+- Advanced ingress routing
+
+#### GitOps for Multi-Environment
+- ArgoCD ApplicationSet for environment promotion across dev/staging/prod
+
+#### CI for Microservices
+- Matrix builds in GitHub Actions for multiple microservices
+
+### Week 15: Full Observability Stack (Prometheus, Loki, Tempo & Grafana)
+
+#### Prometheus
+- Metrics collection
+- PromQL
+- Scrape configs
+- Prometheus Operator
+
+#### Loki
+- Log storage and querying
+- LogQL basics
+
+#### Fluent Bit on EKS
+- Log aggregation, filtering, routing to Loki
+
+#### Grafana
+- Dashboards: Kubernetes cluster, app metrics, AWS resource metrics
+
+#### AlertManager
+- Routing alerts to Slack and PagerDuty
+- Grouping and silencing
+
+#### CloudWatch Integration
+- Container Insights alongside Prometheus
+
+#### OpenTelemetry (Tracing)
+- Distributed tracing: instrumentation, collectors, exporters
+- Tracing a request across multiple microservices end to end
+
+#### Tracing Backend
+- Jaeger or Tempo as tracing backend
+
+#### SLOs & SLIs
+- Definitions, writing measurable objectives
+- Error budget dashboards in Grafana
+- Multi-window, multi-burn-rate alerting for SLOs
+
+#### AlertManager Advanced
+- Inhibition rules, routing trees, deduplication
+
+#### Log-Based Alerting
+- Grafana with Loki rules
+
+### Week 16: Service Mesh (Istio) + Autoscaling + Cost Optimisation
+
+#### Service Mesh Fundamentals (Istio)
+- What problems a service mesh solves
+- Istio installation and architecture: control plane, data plane, sidecars
+
+#### Security
+- mTLS between all microservices: automatic, no code changes
+
+#### Traffic Management
+- VirtualService, DestinationRule, Gateway
+- Canary deployments with Istio traffic splitting
+
+#### Observability
+- Visualising service mesh traffic with Kiali
+
+#### Network Policies
+- Zero-trust pod-to-pod communication
+- Egress controls and namespace isolation
+
+#### Resilience
+- Pod topology spread constraints for multi-AZ resilience
+
+#### Autoscaling
+- Karpenter architecture: how it differs from Cluster Autoscaler
+- NodePool and EC2NodeClass configuration
+- Karpenter bin packing and consolidation
+- KEDA: event-driven pod autoscaling on queue depth, Kafka lag, cron, and custom metrics
+
+#### Cost Optimisation
+- Spot + On-Demand mixed node fleets
+- EKS Auto Mode: what it is and when to use it
+- OpenCost and Kubecost: per-namespace, per-team, per-service cost attribution
+- Tagging strategy as cost governance: enforcing tags with Kyverno and OPA
+- Budget alerts, automated enforcement, weekly FinOps reporting with rightsizing recommendations
+- Building a cost culture: making engineers aware of infrastructure costs
+
+#### Policy Enforcement
+- Kyverno policy enforcement: blocking deployments without resource limits
+- Pod Security Admission: restricted, baseline, privileged modes
+
+---
+
+## MODULE 6: DevSecOps + Kubernetes Security (Kyverno + Security Tools)
+
+### Week 17: Shift-Left Security + Pipeline Hardening
+
+#### DevSecOps Mindset
+- Where security fits in the SDLC
+
+#### SAST (Static Application Security Testing)
+- Semgrep: code-level vulnerability scanning in pull requests
+
+#### DAST (Dynamic Application Security Testing)
+- OWASP ZAP: running against staging before every production release
+
+#### SCA (Software Composition Analysis)
+- Dependency auditing with Trivy and Grype
+
+#### Secret Scanning
+- Pre-commit secret scanning
+- GitHub secret scanning
+
+#### Container Supply Chain Security
+- Trivy blocking critical CVEs
+- Image signing with Cosign
+- SBOM generation with Syft
+
+#### IaC Security Scanning
+- Checkov linting Terraform and Kubernetes manifests
+
+#### Secrets Management in the Pipeline
+- OIDC for AWS auth
+- External Secrets Operator
+
+#### Full Security Pipeline
+- Building the full security pipeline end-to-end in GitHub Actions
+- Hard fail gates: nothing progresses if a gate does not pass
+- Writing Checkov exceptions with documented justification
+- Managing Trivy ignore files: accepting risk intentionally, not accidentally
+- Cosign signature verification in ArgoCD: blocking unsigned images
+
+#### Dependency Updates
+- Dependabot and Renovate
+
+### Week 18: Kubernetes Runtime Security + Policy as Code (Kyverno) + Zero Trust
+
+#### Runtime Threat Detection
+- Falco for runtime threat detection on EKS
+- Custom rules for suspicious process execution, file access, and network activity
+- Falco alerting to Slack in real time
+
+#### CIS Benchmark
+- CIS Kubernetes Benchmark scanning with kube-bench
+
+#### Zero Trust Networking
+- Network policies for zero trust between namespaces: default deny all, explicit allow only
+
+#### Audit Logs
+- Kubernetes audit logs: what's happening in your cluster and how to query it
+
+#### Integrated Security Pipeline
+- Connecting every security tool into a single coherent pipeline
+- Cluster-side controls: Kyverno, Falco, network policies, pod security standards, kube-bench working together
+
+#### Incident Response
+- Incident response workflow: what happens when Falco fires a critical alert
+
+#### Security Reporting
+- Generating a weekly security health report
+
+---
+
+## MODULE 7: SRE + Incident Response
+
+### Week 19: SRE Foundations + Chaos Engineering
+
+#### Core SRE Concepts
+- Reliability, SLIs, SLOs, SLAs
+- Error budgets, incidents, postmortems
+
+#### SLI, SLO, SLA
+- Precise definitions
+- Writing measurable objectives
+
+#### Error Budgets
+- How they make deployment decisions instead of gut feelings
+- Error budget policy: deployment freezes, negotiating reliability work vs feature work
+
+#### DORA Metrics
+- Deployment frequency, lead time, MTTR, change failure rate
+
+#### On-Call Culture
+- Runbook discipline: what a good runbook looks like
+
+#### Postmortem Culture
+- Blameless analysis, timeline reconstruction
+- RCAs that prevent recurrence
+
+#### Chaos Engineering
+- Philosophy: breaking things deliberately before they break unexpectedly
+- LitmusChaos on EKS: pod failure, network delay, CPU stress, disk fill experiments
+- Defining steady-state hypotheses and blast radius limits
+
+#### Capacity Planning
+- Basics and the capacity vs cost trade-off
+
+#### SRE Dashboard
+- Building a production-ready dashboard: error budget burn, DORA metrics, on-call health, alert volume
+
+#### Reliability Reviews
+- Formal review of a service before it goes to production
